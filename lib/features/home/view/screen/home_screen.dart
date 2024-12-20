@@ -2,14 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:task_1/features/home/models/home_model.dart';
 import 'package:task_1/features/home/view/widgets/build_body.dart';
 
-class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+    HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+bool isarabic =true;
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return   Directionality(textDirection: TextDirection.rtl,
+    return   Directionality(textDirection: isarabic? TextDirection.rtl:TextDirection.ltr,
      child: Scaffold(
         appBar: AppBar(
           actions: [
+            IconButton(onPressed: (){
+              isarabic =!isarabic;
+              setState(() {
+                
+              });
+            }, icon: Icon(Icons.abc)),
             const Icon(Icons.camera,color: Colors.black),
             const Icon(Icons.search,color: Colors.black,),
      
@@ -21,7 +34,8 @@ class HomeScreen extends StatelessWidget {
                     const PopupMenuItem(child: Text('الاعدادات'))
                 ];
               }
-            )],
+            )
+            ],
        title: const Text(
            'واتساب',style: TextStyle(          
            fontWeight: FontWeight.w700,
